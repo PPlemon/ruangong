@@ -8,4 +8,4 @@ create table admin
 
 # 插入管理员信息
 insert into admin values(2019020373,"谭胖","123");
-insert into admin values(2019020378,"陈玉立","123");
+insert into admin values(2019020394,"陈玉立","123");
