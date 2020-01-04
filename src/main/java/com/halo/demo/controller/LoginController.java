@@ -86,4 +86,11 @@ public class LoginController {
         }
         return "login";
     }
+
+    @RequestMapping(value = "/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.setAttribute("user", null);
+        return "login";
+    }
 }
