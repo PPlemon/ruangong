@@ -96,7 +96,7 @@ public class GameController {
         return "game_info";
     }
     @RequestMapping("/UpdateGame")
-    public String updateTeacher(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
+    public String updateGame(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
         String gno = httpServletRequest.getParameter("gno");
         int gno_int = Integer.parseInt(gno);
         Game game = gameService.getGameByGno(gno_int);
@@ -110,8 +110,7 @@ public class GameController {
         String gno = httpServletRequest.getParameter("gno");
         int gno_int = Integer.parseInt(gno);
         gameService.delGameByGno(gno_int);
-        return "redirect:/teachergame";
+        return "teacher_game";
     }
-
 
 }

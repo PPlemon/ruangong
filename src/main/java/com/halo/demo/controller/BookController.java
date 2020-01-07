@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author halo.
@@ -35,6 +36,44 @@ public class BookController {
         List<Book> books = bookService.getAllBook();
         request.getSession().setAttribute("allBook", books);
         model.addAttribute("allBook", books);
+        return "book_info";
+    }
+
+    @RequestMapping("/DoBooksUpdate")
+    public String doBookUpdate(@RequestParam("bno") Integer bno,
+                                    @RequestParam("bname") String bname,
+                                    @RequestParam("author") Integer author,
+                                    @RequestParam("type") String type,
+                                    @RequestParam("pubdate") long pubdate,
+                                    @RequestParam("rank") String rank,
+                                    @RequestParam("rankno") Integer rankno, HttpServletRequest request) {
+
+        Book book = new Book();
+        book.setBno(bno);
+        book.setBname(bname);
+        book.setAuthor(author);
+        book.setType(type);
+        book.setPubdate(pubdate);
+        book.setRank(rank);
+        book.setRankno(rankno);
+        bookService.updateBook(book);
+        return "book_info";
+    }
+
+    @RequestMapping("/UpdateBook")
+    public String updateBook(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
+        String bno = httpServletRequest.getParameter("bno");
+        int bno_int = Integer.parseInt(bno);
+        Book book = bookService.getBookByBno(bno_int);
+        paramMap.put("updateBook", book);
+        return "books_alter";
+    }
+
+    @RequestMapping("/DeleteBook")
+    public String DeleteBook(HttpServletRequest httpServletRequest) {
+        String bno = httpServletRequest.getParameter("bno");
+        int bno_int = Integer.parseInt(bno);
+        bookService.delBookByBno(bno_int);
         return "book_info";
     }
 

@@ -33,6 +33,29 @@ public class BookService {
         return books;
     }
 
+
+    public Book getBookByBno(int bno_int) {
+        Book book = bookMapper.selectByPrimaryKey(bno_int);
+        return book;
+    }
+
+    public void updateBook(Book book) {
+        if (book.getBno() != null) {
+            BookExample bookExample = new BookExample();
+            bookExample.createCriteria().andBnoEqualTo(book.getBno());
+            List<Book> books = bookMapper.selectByExample(bookExample);
+            // 插入用户信息
+            if (books.size() != 0) {
+                bookMapper.updateByExampleSelective(book, bookExample);
+            }
+        }
+    }
+
+    public void delBookByBno ( int bno){
+        {
+            bookMapper.deleteByPrimaryKey(bno);
+        }
+    }
     public Book addbook(Book book){
         bookMapper.insert(book);
         return null;

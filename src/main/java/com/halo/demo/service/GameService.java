@@ -57,9 +57,9 @@ public class GameService {
         }
     }
 
-        public void delGameByGno ( int gno_int){
+        public void delGameByGno ( int gno){
             {
-                gameMapper.deleteByPrimaryKey(gno_int);
+                gameMapper.deleteByPrimaryKey(gno);
             }
         }
     }
