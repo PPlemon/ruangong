@@ -58,7 +58,7 @@ public class GameController {
         return "teacher_game_add";
     }
 
-    @RequestMapping("/DoGamesAdd")
+    @RequestMapping("/DogamesAdd")
     public String dogamesAdd(@RequestParam("gno") Integer gno,
                               @RequestParam("gname") String gname,
                               @RequestParam("winner") Integer winner,
@@ -74,7 +74,12 @@ public class GameController {
         game.setRank(rank);
         game.setRankno(rankno);
         gameService.addGame(game);
-        return "teacher_game";
+        HttpSession session = request.getSession();
+        Integer type1 = (Integer) session.getAttribute("type");
+        if(type1 == 2){                                       //2代表教师
+            return "redirect:/teachergame";
+        }
+        return "redirect:/ManageGame";
     }
 
     @RequestMapping("/DoGamesUpdate")

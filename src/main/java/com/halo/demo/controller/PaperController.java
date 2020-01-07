@@ -98,8 +98,8 @@ public class PaperController {
         return "teacher_paper_add";
     }
 
-    @RequestMapping("/DopapersAdd")
-    public String dopapersAdd(@RequestParam("pppno") Integer pppno,
+    @RequestMapping("/DopapersAdd")              //添加
+    public String dopapersAdd(@RequestParam("ppno") Integer ppno,
                                 @RequestParam("ppname") String ppname,
                                 @RequestParam("author") Integer author,
                                 @RequestParam("journal") String journal,
@@ -108,7 +108,7 @@ public class PaperController {
                                @RequestParam("rankno") Integer rankno, HttpServletRequest request) {
 
         Paper paper = new Paper();
-        paper.setPpno(pppno);
+        paper.setPpno(ppno);
         paper.setPpname(ppname);
         paper.setAuthor(author);
         paper.setJournal(journal);
@@ -116,7 +116,12 @@ public class PaperController {
         paper.setRank(rank);
         paper.setRankno(rankno);
         paperService.addpaper(paper);
-        return "teacher_paper";
+        HttpSession session = request.getSession();
+        Integer type1 = (Integer) session.getAttribute("type");
+        if(type1 == 2){                                       //2代表教师
+            return "redirect:/teacherpaper";
+        }
+        return "redirect:/ManagePaper";
     }
 
     @PostMapping("/SearchPapers")

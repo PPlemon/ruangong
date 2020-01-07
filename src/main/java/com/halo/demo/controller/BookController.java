@@ -111,7 +111,12 @@ public class BookController {
         book.setRank(rank);
         book.setRankno(rankno);
         bookService.addbook(book);
-        return "teacher_book";
+        HttpSession session = request.getSession();
+        Integer type1 = (Integer) session.getAttribute("type");
+        if(type1 == 2){                                       //2代表教师
+            return "redirect:/teacherbook";
+        }
+        return "redirect:/ManageBook";
     }
     @PostMapping("/SearchBooks")
     public String SearchBooks(HttpServletRequest httpServletRequest) {

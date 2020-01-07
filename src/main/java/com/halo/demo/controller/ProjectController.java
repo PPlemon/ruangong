@@ -92,7 +92,7 @@ public class ProjectController {
 
     @RequestMapping("/ProjectsAddAction")
     public String ProjectsAddAction(HttpServletRequest request, Model model) {
-        return "project_project_add";
+        return "teacher_project_add";
     }
 
     @RequestMapping("/DoprojectsAdd")
@@ -109,7 +109,12 @@ public class ProjectController {
         project.setRank(rank);
         project.setRankno(rankno);
         projectService.addproject(project);
-        return "project_project";
+        HttpSession session = request.getSession();
+        Integer type1 = (Integer) session.getAttribute("type");
+        if(type1 == 2){                                       //2代表教师
+            return "redirect:/teacherproject";
+        }
+        return "redirect:/ManageProject";
     }
 
     @PostMapping("/SearchProjects")

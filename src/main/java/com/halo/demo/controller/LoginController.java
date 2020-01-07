@@ -47,7 +47,7 @@ public class LoginController {
                         HttpServletRequest request, HttpServletResponse response) {
         //存入session
         HttpSession session=request.getSession();
-        session.setAttribute("type",1);
+        session.setAttribute("type",2);
         session.setAttribute("tno",tno);
 
 //存入cookie
