@@ -35,7 +35,6 @@ public class ProjectService {
         ProjectExample.Criteria criteria2 = projectExample.createCriteria();
         criteria2.andManagerEqualTo(Manager);
         List<Project> projects = projectMapper.selectByExample(projectExample);
-
         return projects;
     }
     public Project addproject(Project project){

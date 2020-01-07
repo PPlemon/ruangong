@@ -77,17 +77,17 @@ public class ProjectController {
         return "project_info";
     }
     
-    @RequestMapping("/projectproject")
+    @RequestMapping("/teacherproject")
     public String projectproject(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession();
-        Integer manager = (Integer) session.getAttribute("pno");
+        Integer manager = (Integer) session.getAttribute("tno");
 
         List<Project> projects = projectService.getProject(manager);
 
         request.getSession().setAttribute("allProject", projects);
         model.addAttribute("allProject", projects);
-        return "project_project";
+        return "teacher_project";
     }
 
     @RequestMapping("/ProjectsAddAction")
