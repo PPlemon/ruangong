@@ -2,12 +2,13 @@ package com.halo.demo.controller;
 
 import com.halo.demo.model.Book;
 import com.halo.demo.model.Game;
-import com.halo.demo.model.Paper;
+import com.halo.demo.model.Book;
 import com.halo.demo.service.BookService;
-import com.halo.demo.service.PaperService;
+import com.halo.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -88,7 +89,7 @@ public class BookController {
     }
 
     @RequestMapping("/BooksAddAction")
-    public String PapersAddAction(HttpServletRequest request, Model model) {
+    public String BooksAddAction(HttpServletRequest request, Model model) {
         return "teacher_book_add";
     }
 
@@ -111,5 +112,32 @@ public class BookController {
         book.setRankno(rankno);
         bookService.addbook(book);
         return "teacher_book";
+    }
+    @PostMapping("/SearchBooks")
+    public String SearchBooks(HttpServletRequest httpServletRequest) {
+
+        Book book = new Book();
+        Integer bno = (httpServletRequest.getParameter("bno").equals("")) ? null : Integer.parseInt(httpServletRequest.getParameter("bno"));
+        String bname = (httpServletRequest.getParameter("bname").equals("")) ? null : httpServletRequest.getParameter("bname");
+        Integer author = (httpServletRequest.getParameter("author").equals("")) ? null : Integer.parseInt(httpServletRequest.getParameter("author"));
+        String type = (httpServletRequest.getParameter("type").equals("")) ? null : httpServletRequest.getParameter("type");
+        String rank = (httpServletRequest.getParameter("rank").equals("")) ? null : httpServletRequest.getParameter("rank");
+        book.setBno(bno);
+        book.setBname(bname);
+        book.setAuthor(author);
+        book.setType(type);
+        book.setRank(rank);
+        List<Book> booksByExample = bookService.getBookByExample(book);
+        System.out.println(booksByExample);
+        httpServletRequest.getSession().setAttribute("allBook", booksByExample);
+        return "forward:/BooksPage";
+    }
+
+    @RequestMapping("/BooksPage")
+    public String booksPage(HttpServletRequest httpServletRequest) {
+        Object allBook = httpServletRequest.getSession().getAttribute("allBook");
+        System.out.println(allBook);
+        httpServletRequest.setAttribute("allBook", allBook);
+        return "book_info";
     }
 }

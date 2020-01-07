@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halo.demo.mapper.BookExtMapper">
+
+  <select id="getBooksByExample" parameterType="com.halo.demo.model.BookExample"
+          resultType="com.halo.demo.model.Book">
+    select * from book
+    <where>
+      <if test="bno!=null">
+        bno = #{bno}
+      </if>
+      <if test="bname!=null">
+        and bname = #{bname}
+      </if>
+      <if test="rank!=null">
+        and rank = #{rank}
+      </if>
+      <if test="author!=null">
+        and author = #{author}
+      </if>
+      <if test="type!=null">
+        and type = #{type}
+      </if>
+    </where>
+  </select>
+</mapper>

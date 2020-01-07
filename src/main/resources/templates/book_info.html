@@ -37,6 +37,22 @@
                            placeholder="作者"
                            aria-label="Search">
                 </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">学科</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="type" th:name="type" v-model="searchBook.type"
+                           placeholder="专著名称"
+                           aria-label="Search">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">类型</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="rank" v-model="searchBook.rank"
+                           placeholder="专著名称"
+                           aria-label="Search">
+                </div>
 
                 <button class="btn btn-outline-primary mr-sm-2" type="submit">
                     <span data-feather="search"></span>

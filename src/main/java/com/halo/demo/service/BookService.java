@@ -1,7 +1,8 @@
 package com.halo.demo.service;
 
+import com.halo.demo.mapper.BookExtMapper;
 import com.halo.demo.mapper.BookMapper;
-import com.halo.demo.mapper.PaperMapper;
+import com.halo.demo.mapper.BookMapper;
 import com.halo.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class BookService {
 
     @Autowired
     private BookMapper bookMapper;
+
+    @Autowired
+    private BookExtMapper bookExtMapper;
 
     public List<Book> getAllBook() {
         BookExample bookExample = new BookExample();
@@ -49,6 +53,10 @@ public class BookService {
                 bookMapper.updateByExampleSelective(book, bookExample);
             }
         }
+    }
+    public List<Book> getBookByExample(Book book) {
+
+        return bookExtMapper.getBooksByExample(book);
     }
 
     public void delBookByBno ( int bno){
