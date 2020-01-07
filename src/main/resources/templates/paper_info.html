@@ -25,7 +25,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">论文名称</span>
                     </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="pname" v-model="searchPaper.ppname"
+                    <input class="form-control mr-sm-2" type="text" th:name="ppname" v-model="searchPaper.ppname"
                            placeholder="论文名称"
                            aria-label="Search">
                 </div>
@@ -33,7 +33,15 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">作者</span>
                     </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="manager" v-model="searchPaper.author"
+                    <input class="form-control mr-sm-2" type="text" th:name="author" v-model="searchPaper.author"
+                           placeholder="作者"
+                           aria-label="Search">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">等级</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="rank" v-model="searchPaper.rank"
                            placeholder="作者"
                            aria-label="Search">
                 </div>

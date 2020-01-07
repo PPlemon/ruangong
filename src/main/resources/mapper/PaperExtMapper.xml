@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.halo.demo.mapper.PaperExtMapper">
+
+  <select id="getPapersByExample" parameterType="com.halo.demo.model.PaperExample"
+          resultType="com.halo.demo.model.Paper">
+    select * from paper
+    <where>
+      <if test="ppno!=null">
+        ppno = #{ppno}
+      </if>
+      <if test="ppname!=null">
+        and ppname = #{ppname}
+      </if>
+      <if test="rank!=null">
+        and rank = #{rank}
+      </if>
+      <if test="author!=null">
+        and author = #{author}
+      </if>
+    </where>
+  </select>
+</mapper>

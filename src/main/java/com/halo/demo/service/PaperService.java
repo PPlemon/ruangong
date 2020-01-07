@@ -1,7 +1,8 @@
 package com.halo.demo.service;
 
+import com.halo.demo.mapper.PaperExtMapper;
 import com.halo.demo.mapper.PaperMapper;
-import com.halo.demo.mapper.ProjectMapper;
+import com.halo.demo.mapper.PaperMapper;
 import com.halo.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class PaperService {
 
     @Autowired
     PaperMapper paperMapper;
+
+    @Autowired
+    PaperExtMapper paperExtMapper;
 
     public List<Paper> getAllPaper() {
         PaperExample paperExample = new PaperExample();
@@ -54,6 +58,11 @@ public class PaperService {
             }
         }
     }
+    public List<Paper> getPaperByExample(Paper paper) {
+
+        return paperExtMapper.getPapersByExample(paper);
+    }
+
 
     public void delPaperByPpno ( int ppno){
         {
