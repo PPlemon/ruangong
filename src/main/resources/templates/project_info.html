@@ -30,11 +30,19 @@
                            aria-label="Search">
                 </div>
                 <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">负责人</span>
+                </div>
+                <input class="form-control mr-sm-2" type="text" th:name="manager" v-model="searchProject.manager"
+                       placeholder="负责人"
+                       aria-label="Search">
+            </div>
+                <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">负责人</span>
+                        <span class="input-group-text">等级</span>
                     </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="manager" v-model="searchProject.manager"
-                           placeholder="负责人"
+                    <input class="form-control mr-sm-2" type="text" th:name="rank" v-model="searchProject.rank"
+                           placeholder="等级"
                            aria-label="Search">
                 </div>
 

@@ -1,5 +1,6 @@
 package com.halo.demo.service;
 
+import com.halo.demo.mapper.ProjectExtMapper;
 import com.halo.demo.mapper.ProjectMapper;
 import com.halo.demo.mapper.TeacherMapper;
 import com.halo.demo.model.*;
@@ -20,6 +21,9 @@ public class ProjectService {
 
     @Autowired
     private ProjectMapper projectMapper;
+
+    @Autowired
+    private ProjectExtMapper projectExtMapper;
 
     public List<Project> getAllProject() {
         ProjectExample projectExample = new ProjectExample();
@@ -53,6 +57,10 @@ public class ProjectService {
                 projectMapper.updateByExampleSelective(project, projectExample);
             }
         }
+    }
+    public List<Project> getProjectByExample(Project project) {
+
+        return projectExtMapper.getProjectsByExample(project);
     }
 
     public void delProjectByPno ( int pno){
