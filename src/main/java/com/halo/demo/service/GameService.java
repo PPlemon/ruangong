@@ -2,10 +2,7 @@ package com.halo.demo.service;
 
 import com.halo.demo.mapper.GameMapper;
 import com.halo.demo.mapper.PaperMapper;
-import com.halo.demo.model.Game;
-import com.halo.demo.model.GameExample;
-import com.halo.demo.model.Paper;
-import com.halo.demo.model.PaperExample;
+import com.halo.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +18,20 @@ import java.util.List;
 public class GameService {
 
     @Autowired
-   private GameMapper gameMapper;
+    private GameMapper gameMapper;
+
+    public Game getGameByGno(int gno_int) {
+        Game game = gameMapper.selectByPrimaryKey(gno_int);
+        return game;
+    }
+
 
     public List<Game> getAllGame() {
         GameExample gameExample = new GameExample();
         List<Game> games = gameMapper.selectByExample(gameExample);
         return games;
     }
+
     public List<Game> getGame(Integer winner) {
         GameExample gameExample = new GameExample();
         GameExample.Criteria criteria2 = gameExample.createCriteria();
@@ -35,8 +39,28 @@ public class GameService {
         List<Game> games = gameMapper.selectByExample(gameExample);
         return games;
     }
-    public Game addgame(Game game){
+
+    public Game addGame(Game game) {
         gameMapper.insert(game);
         return null;
     }
-}
+
+    public void updateGame(Game game) {
+        if (game.getGno() != null) {
+            GameExample gameExample = new GameExample();
+            gameExample.createCriteria().andGnoEqualTo(game.getGno());
+            List<Game> games = gameMapper.selectByExample(gameExample);
+            // 插入用户信息
+            if (games.size() != 0) {
+                gameMapper.updateByExampleSelective(game, gameExample);
+            }
+        }
+    }
+
+        public void delGameByGno ( int gno_int){
+            {
+                gameMapper.deleteByPrimaryKey(gno_int);
+            }
+        }
+    }
+

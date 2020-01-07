@@ -1,19 +1,24 @@
 package com.halo.demo.controller;
 
+import com.halo.demo.dto.TeacherDTO;
 import com.halo.demo.model.Book;
 import com.halo.demo.model.Game;
 import com.halo.demo.model.Paper;
+import com.halo.demo.model.Teacher;
 import com.halo.demo.service.GameService;
 import com.halo.demo.service.PaperService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author halo.
@@ -53,7 +58,7 @@ public class GameController {
         return "teacher_game_add";
     }
 
-    @RequestMapping("/DogamesAdd")
+    @RequestMapping("/DoGamesAdd")
     public String dogamesAdd(@RequestParam("gno") Integer gno,
                               @RequestParam("gname") String gname,
                               @RequestParam("winner") Integer winner,
@@ -68,8 +73,45 @@ public class GameController {
         game.setType(type);
         game.setRank(rank);
         game.setRankno(rankno);
-        gameService.addgame(game);
+        gameService.addGame(game);
         return "teacher_game";
     }
+
+    @RequestMapping("/DoGamesUpdate")
+    public String doGamesUpdate(@RequestParam("gno") Integer gno,
+                             @RequestParam("gname") String gname,
+                             @RequestParam("winner") Integer winner,
+                             @RequestParam("type") String type,
+                             @RequestParam("rank") String rank,
+                             @RequestParam("rankno") Integer rankno, HttpServletRequest request) {
+
+        Game game = new Game();
+        game.setGno(gno);
+        game.setGname(gname);
+        game.setWinner(winner);
+        game.setType(type);
+        game.setRank(rank);
+        game.setRankno(rankno);
+        gameService.updateGame(game);
+        return "game_info";
+    }
+    @RequestMapping("/UpdateGame")
+    public String updateTeacher(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
+        String gno = httpServletRequest.getParameter("gno");
+        int gno_int = Integer.parseInt(gno);
+        Game game = gameService.getGameByGno(gno_int);
+        paramMap.put("updateGame", game);
+        return "games_alter";
+    }
+
+
+    @RequestMapping("/DeleteGame")
+    public String DeleteGame(HttpServletRequest httpServletRequest) {
+        String gno = httpServletRequest.getParameter("gno");
+        int gno_int = Integer.parseInt(gno);
+        gameService.delGameByGno(gno_int);
+        return "redirect:/teachergame";
+    }
+
 
 }
