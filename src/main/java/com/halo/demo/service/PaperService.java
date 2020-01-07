@@ -2,10 +2,7 @@ package com.halo.demo.service;
 
 import com.halo.demo.mapper.PaperMapper;
 import com.halo.demo.mapper.ProjectMapper;
-import com.halo.demo.model.Paper;
-import com.halo.demo.model.PaperExample;
-import com.halo.demo.model.Project;
-import com.halo.demo.model.ProjectExample;
+import com.halo.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +36,28 @@ public class PaperService {
     public Paper addpaper(Paper paper){
         paperMapper.insert(paper);
         return null;
+    }
+
+    public Paper getPaperByPpno(int ppno_int) {
+        Paper paper = paperMapper.selectByPrimaryKey(ppno_int);
+        return paper;
+    }
+
+    public void updatePaper(Paper paper) {
+        if (paper.getPpno() != null) {
+            PaperExample paperExample = new PaperExample();
+            paperExample.createCriteria().andPpnoEqualTo(paper.getPpno());
+            List<Paper> papers = paperMapper.selectByExample(paperExample);
+            // 插入用户信息
+            if (papers.size() != 0) {
+                paperMapper.updateByExampleSelective(paper, paperExample);
+            }
+        }
+    }
+
+    public void delPaperByPpno ( int ppno){
+        {
+            paperMapper.deleteByPrimaryKey(ppno);
+        }
     }
 }

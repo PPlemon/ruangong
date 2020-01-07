@@ -1,6 +1,7 @@
 package com.halo.demo.controller;
 
 import com.halo.demo.dto.TeacherDTO;
+import com.halo.demo.model.Book;
 import com.halo.demo.model.Paper;
 import com.halo.demo.model.Project;
 import com.halo.demo.model.Teacher;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author halo.
@@ -40,6 +42,44 @@ public class PaperController {
         return "paper_info";
     }
 
+    @RequestMapping("/DoPapersUpdate")
+    public String dopapersUpdate(@RequestParam("ppno") Integer ppno,
+                              @RequestParam("ppname") String ppname,
+                              @RequestParam("author") Integer author,
+                              @RequestParam("journal") String journal,
+                              @RequestParam("pubdate") long pubdate,
+                              @RequestParam("rank") String rank,
+                              @RequestParam("rankno") Integer rankno, HttpServletRequest request) {
+
+        Paper paper = new Paper();
+        paper.setPpno(ppno);
+        paper.setPpname(ppname);
+        paper.setAuthor(author);
+        paper.setJournal(journal);
+        paper.setPubdate(pubdate);
+        paper.setRank(rank);
+        paper.setRankno(rankno);
+        paperService.updatePaper(paper);
+        return "paper_info";
+    }
+
+    @RequestMapping("/UpdatePaper")
+    public String updatePaper(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
+        String ppno = httpServletRequest.getParameter("ppno");
+        int ppno_int = Integer.parseInt(ppno);
+        Paper paper = paperService.getPaperByPpno(ppno_int);
+        paramMap.put("updatePaper", paper);
+        return "papers_alter";
+    }
+
+    @RequestMapping("/DeletePaper")
+    public String DeletePaper(HttpServletRequest httpServletRequest) {
+        String ppno = httpServletRequest.getParameter("ppno");
+        int ppno_int = Integer.parseInt(ppno);
+        paperService.delPaperByPpno(ppno_int);
+        return "paper_info";
+    }
+
     @RequestMapping("/teacherpaper")
     public String teacherpaper(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -50,6 +90,7 @@ public class PaperController {
         model.addAttribute("allPaper", papaers);
         return "teacher_paper";
     }
+
 
     @RequestMapping("/PapersAddAction")
     public String PapersAddAction(HttpServletRequest request, Model model) {

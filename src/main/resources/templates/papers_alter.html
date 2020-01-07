@@ -15,24 +15,24 @@
         <div th:replace="common/backstageNavigator.html :: navi"></div>
         <main id="TA" role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                <h1 class="h2">修改出版专著</h1>
+                <h1 class="h2">修改教改论文</h1>
             </div>
-            <form th:action="@{/DoBooksUpdate}" method="post">
+            <form th:action="@{/DoPapersUpdate}" method="post">
                 <div class="form-group col-sm-4">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">专著编号</span>
+                            <span class="input-group-text">论文编号</span>
                         </div>
 
-                        <input  class="form-control mr-sm-2" readonly="readonly" type="number"  th:name="bno" v-model="bno" placeholder="">
+                        <input  class="form-control mr-sm-2" readonly="readonly" type="number"  th:name="ppno" v-model="ppno" placeholder="">
                     </div>
                 </div>
                 <div class="form-group col-sm-4">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">专著名称</span>
+                            <span class="input-group-text">论文名称</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" th:name="bname" v-model="bname"
+                        <input class="form-control mr-sm-2" type="text" th:name="ppname" v-model="ppname"
                                placeholder="">
                     </div>
                 </div>
@@ -48,9 +48,9 @@
                 <div class="form-group col-sm-4">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">类别</span>
+                            <span class="input-group-text">期刊</span>
                         </div>
-                        <input class="form-control mr-sm-2" type="text" th:name="type" v-model="type" placeholder="">
+                        <input class="form-control mr-sm-2" type="text" th:name="journal" v-model="journal" placeholder="">
                     </div>
                 </div>
 
@@ -97,13 +97,13 @@
         el: '#TA'
         ,
         data: {
-            bno: [[${updateBook.bno}]],
-            bname: '[[${updateBook.bname}]]',
-            author: [[${updateBook.author}]],
-            pubdate: [[${updateBook.pubdate}]],
-            rankno:[[${updateBook.rankno}]],
-            type: '[[${updateBook.type}]]',
-            rank: '[[${updateBook.rank}]]'
+            ppno: [[${updatePaper.ppno}]],
+            ppname: '[[${updatePaper.ppname}]]',
+            author: [[${updatePaper.author}]],
+            journal: '[[${updatePaper.journal}]]',
+            pubdate: [[${updatePaper.pubdate}]],
+            rankno:[[${updatePaper.rankno}]],
+            rank: '[[${updatePaper.rank}]]'
         }
     })
 </script>

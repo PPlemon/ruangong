@@ -62,13 +62,13 @@
                 </thead>
                 <tbody>
                 <tr>
-                <tr v-for="(papaer, index) in pagepapers">
-                    <td>{{papaer.ppno}}</td>
-                    <td>{{papaer.ppname}}</td>
-                    <td>{{papaer.author}}</td>
-                    <td>{{papaer.rank}}</td>
+                <tr v-for="(paper, index) in pagepapers">
+                    <td>{{paper.ppno}}</td>
+                    <td>{{paper.ppname}}</td>
+                    <td>{{paper.author}}</td>
+                    <td>{{paper.rank}}</td>
                     <td>
-                        <button class="btn btn-outline-primary btn-sm" v-on:click="change(papaer.ppno)" type="button">
+                        <button class="btn btn-outline-primary btn-sm" v-on:click="change(paper.ppno)" type="button">
                             修改
                         </button>
 
@@ -122,13 +122,13 @@
                     this.pagepapers = this.totalpage[this.currentpage];
                 }
             },
-            change: function (pno) {
-                // alert(pno);
-                window.location = "/UpdatePaper?pno=" + ppno;
+            change: function (ppno) {
+                // alert(ppno);
+                window.location = "/UpdatePaper?ppno=" + ppno;
             },
-            del: function (pno) {
-                // delete(pno);
-                window.location = "/DeletePaper?pno=" + ppno;
+            del: function (ppno) {
+                // delete(ppno);
+                window.location = "/DeletePaper?ppno=" + ppno;
             }
         },
         data: {
