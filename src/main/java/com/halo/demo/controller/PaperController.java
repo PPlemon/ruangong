@@ -140,7 +140,6 @@ public class PaperController {
     @RequestMapping("/PapersPage")
     public String papersPage(HttpServletRequest httpServletRequest) {
         Object allPaper = httpServletRequest.getSession().getAttribute("allPaper");
-        System.out.println(allPaper);
         httpServletRequest.setAttribute("allPaper", allPaper);
         return "paper_info";
     }

@@ -136,7 +136,6 @@ public class BookController {
     @RequestMapping("/BooksPage")
     public String booksPage(HttpServletRequest httpServletRequest) {
         Object allBook = httpServletRequest.getSession().getAttribute("allBook");
-        System.out.println(allBook);
         httpServletRequest.setAttribute("allBook", allBook);
         return "book_info";
     }

@@ -1,5 +1,6 @@
 package com.halo.demo.service;
 
+import com.halo.demo.mapper.GameExtMapper;
 import com.halo.demo.mapper.GameMapper;
 import com.halo.demo.mapper.PaperMapper;
 import com.halo.demo.model.*;
@@ -19,6 +20,8 @@ public class GameService {
 
     @Autowired
     private GameMapper gameMapper;
+    @Autowired
+    private GameExtMapper gameExtMapper;
 
     public Game getGameByGno(int gno_int) {
         Game game = gameMapper.selectByPrimaryKey(gno_int);
@@ -56,8 +59,12 @@ public class GameService {
             }
         }
     }
+    public List<Game> getGameByExample(Game game) {
 
-        public void delGameByGno ( int gno){
+        return gameExtMapper.getGamesByExample(game);
+    }
+
+    public void delGameByGno ( int gno){
             {
                 gameMapper.deleteByPrimaryKey(gno);
             }

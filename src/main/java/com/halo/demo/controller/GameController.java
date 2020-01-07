@@ -1,7 +1,7 @@
 package com.halo.demo.controller;
 
 import com.halo.demo.dto.TeacherDTO;
-import com.halo.demo.model.Book;
+import com.halo.demo.model.Game;
 import com.halo.demo.model.Game;
 import com.halo.demo.model.Paper;
 import com.halo.demo.model.Teacher;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author halo.
+ * @winner halo.
  * @email ironerhalo@gmail.com.
  * @data 2019/12/1 19:28.
  */
@@ -113,4 +113,28 @@ public class GameController {
         return "teacher_game";
     }
 
+    @PostMapping("/SearchGames")
+    public String SearchGames(HttpServletRequest httpServletRequest) {
+        Game game = new Game();
+        Integer gno = (httpServletRequest.getParameter("gno").equals("")) ? null : Integer.parseInt(httpServletRequest.getParameter("gno"));
+        String gname = (httpServletRequest.getParameter("gname").equals("")) ? null : httpServletRequest.getParameter("gname");
+        Integer winner = (httpServletRequest.getParameter("winner").equals("")) ? null : Integer.parseInt(httpServletRequest.getParameter("winner"));
+        String type = (httpServletRequest.getParameter("type").equals("")) ? null : httpServletRequest.getParameter("type");
+        String rank = (httpServletRequest.getParameter("rank").equals("")) ? null : httpServletRequest.getParameter("rank");
+        game.setGno(gno);
+        game.setGname(gname);
+        game.setWinner(winner);
+        game.setType(type);
+        game.setRank(rank);
+        List<Game> gamesByExample = gameService.getGameByExample(game);
+        httpServletRequest.getSession().setAttribute("allGame", gamesByExample);
+        return "forward:/GamesPage";
+    }
+
+    @RequestMapping("/GamesPage")
+    public String gamesPage(HttpServletRequest httpServletRequest) {
+        Object allGame = httpServletRequest.getSession().getAttribute("allGame");
+        httpServletRequest.setAttribute("allGame", allGame);
+        return "game_info";
+    }
 }

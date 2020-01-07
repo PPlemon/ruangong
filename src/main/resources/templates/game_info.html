@@ -10,14 +10,14 @@
 <div class="container-fluid">
     <div class="row">
         <div th:replace="common/backstageNavigator.html :: navi"></div>
-        <main id="TI" role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" method="post" th:action="@{/SeacherGames}">
+        <main id="TI" role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" method="post" th:action="@{/SearchGames}">
 
-            <form class="form-inline mt-2 mt-md-0" method="post" th:action="@{/SeacherGames}">
+            <form class="form-inline mt-2 mt-md-0" method="post" th:action="@{/SearchGames}">
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text">比赛编号</span>
                     </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="ppno" v-model="searchGame.ppno"
+                    <input class="form-control mr-sm-2" type="text" th:name="gno" v-model="searchGame.gno"
                            placeholder="比赛编号"
                            aria-label="Search">
                 </div>
@@ -25,7 +25,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">比赛名称</span>
                     </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="pname" v-model="searchGame.ppname"
+                    <input class="form-control mr-sm-2" type="text" th:name="gname" v-model="searchGame.gname"
                            placeholder="比赛名称"
                            aria-label="Search">
                 </div>
@@ -37,6 +37,23 @@
                            placeholder="获奖人"
                            aria-label="Search">
                 </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">类别</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="type" v-model="searchGame.type"
+                           placeholder="获奖人"
+                           aria-label="Search">
+                </div>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">等级</span>
+                    </div>
+                    <input class="form-control mr-sm-2" type="text" th:name="rank" v-model="searchGame.rank"
+                           placeholder="获奖人"
+                           aria-label="Search">
+                </div>
+
 
                 <button class="btn btn-outline-primary mr-sm-2" type="submit">
                     <span data-feather="search"></span>
@@ -136,7 +153,7 @@
         data: {
             searchGame: {
                 gno: null,
-                game: '',
+                gname: '',
                 winner: '',
                 type: '',
                 rank:''
