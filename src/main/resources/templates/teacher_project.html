@@ -12,37 +12,6 @@
         <div th:replace="common/backstageNavigator.html :: navi"></div>
         <main id="TI" role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" method="post" th:action="@{/SeacherProjects}">
 
-            <form class="form-inline mt-2 mt-md-0" method="post" th:action="@{/SearchProjects}">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">项目编号</span>
-                    </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="pno" v-model="searchProject.pno"
-                           placeholder="项目编号"
-                           aria-label="Search">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">项目名称</span>
-                    </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="pname" v-model="searchProject.pname"
-                           placeholder="项目名称"
-                           aria-label="Search">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">负责人</span>
-                    </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="manager" v-model="searchProject.manager"
-                           placeholder="负责人"
-                           aria-label="Search">
-                </div>
-
-                <button class="btn btn-outline-primary mr-sm-2" type="submit">
-                    <span data-feather="search"></span>
-                    搜索
-                </button>
-            </form>
             <h1></h1>
             <a href="/ProjectsAddAction" class="btn btn-outline-primary mr-sm-2" role="button">
                 <span data-feather="user-plus"></span>

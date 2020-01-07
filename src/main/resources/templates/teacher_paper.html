@@ -12,37 +12,6 @@
         <div th:replace="common/backstageNavigator.html :: navi"></div>
         <main id="TI" role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" method="post" th:action="@{/SeacherPapers}">
 
-            <form class="form-inline mt-2 mt-md-0" method="post" th:action="@{/SearchPapers}">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">论文编号</span>
-                    </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="ppno" v-model="searchPaper.ppno"
-                           placeholder="论文编号"
-                           aria-label="Search">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">论文名称</span>
-                    </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="pname" v-model="searchPaper.ppname"
-                           placeholder="论文名称"
-                           aria-label="Search">
-                </div>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">作者</span>
-                    </div>
-                    <input class="form-control mr-sm-2" type="text" th:name="manager" v-model="searchPaper.author"
-                           placeholder="作者"
-                           aria-label="Search">
-                </div>
-
-                <button class="btn btn-outline-primary mr-sm-2" type="submit">
-                    <span data-feather="search"></span>
-                    搜索
-                </button>
-            </form>
             <h1></h1>
             <a href="/PapersAddAction" class="btn btn-outline-primary mr-sm-2" role="button">
                 <span data-feather="user-plus"></span>
