@@ -1,7 +1,7 @@
 package com.halo.demo.controller;
 
 import com.halo.demo.dto.TeacherDTO;
-import com.halo.demo.model.Paper;
+import com.halo.demo.model.Project;
 import com.halo.demo.model.Project;
 import com.halo.demo.model.Teacher;
 import com.halo.demo.service.ProjectService;
@@ -42,6 +42,40 @@ public class ProjectController {
         return "project_info";
     }
 
+    @RequestMapping("/DoProjectsUpdate")
+    public String doProjectsUpdate(@RequestParam("pno") Integer pno,
+                                @RequestParam("pname") String pname,
+                                @RequestParam("manager") Integer manager,
+                                @RequestParam("rank") String rank,
+                                @RequestParam("rankno") Integer rankno, HttpServletRequest request) {
+
+        Project project = new Project();
+        project.setPno(pno);
+        project.setPname(pname);
+        project.setManager(manager);
+        project.setRank(rank);
+        project.setRankno(rankno);
+        projectService.updateProject(project);
+        return "project_info";
+    }
+
+    @RequestMapping("/UpdateProject")
+    public String updateProject(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
+        String pno = httpServletRequest.getParameter("pno");
+        int pno_int = Integer.parseInt(pno);
+        Project project = projectService.getProjectByPno(pno_int);
+        paramMap.put("updateProject", project);
+        return "projects_alter";
+    }
+
+    @RequestMapping("/DeleteProject")
+    public String DeleteProject(HttpServletRequest httpServletRequest) {
+        String pno = httpServletRequest.getParameter("pno");
+        int pno_int = Integer.parseInt(pno);
+        projectService.delProjectByPno(pno_int);
+        return "project_info";
+    }
+    
     @RequestMapping("/teacherproject")
     public String teacherproject(HttpServletRequest request, Model model) {
 
@@ -56,7 +90,7 @@ public class ProjectController {
     }
 
     @RequestMapping("/ProjectsAddAction")
-    public String PapersAddAction(HttpServletRequest request, Model model) {
+    public String ProjectsAddAction(HttpServletRequest request, Model model) {
         return "teacher_project_add";
     }
 

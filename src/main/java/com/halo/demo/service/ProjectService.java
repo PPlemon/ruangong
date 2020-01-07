@@ -2,10 +2,7 @@ package com.halo.demo.service;
 
 import com.halo.demo.mapper.ProjectMapper;
 import com.halo.demo.mapper.TeacherMapper;
-import com.halo.demo.model.Project;
-import com.halo.demo.model.ProjectExample;
-import com.halo.demo.model.Teacher;
-import com.halo.demo.model.TeacherExample;
+import com.halo.demo.model.*;
 import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,4 +38,27 @@ public class ProjectService {
         projectMapper.insert(project);
         return null;
     }
+    public Project getProjectByPno(int pno_int) {
+        Project project = projectMapper.selectByPrimaryKey(pno_int);
+        return project;
+    }
+
+    public void updateProject(Project project) {
+        if (project.getPno() != null) {
+            ProjectExample projectExample = new ProjectExample();
+            projectExample.createCriteria().andPnoEqualTo(project.getPno());
+            List<Project> projects = projectMapper.selectByExample(projectExample);
+            // 插入用户信息
+            if (projects.size() != 0) {
+                projectMapper.updateByExampleSelective(project, projectExample);
+            }
+        }
+    }
+
+    public void delProjectByPno ( int pno){
+        {
+            projectMapper.deleteByPrimaryKey(pno);
+        }
+    }
+    
 }
