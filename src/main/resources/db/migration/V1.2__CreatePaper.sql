@@ -16,14 +16,14 @@ create table paper
 );
 
 # 插入论文信息
-insert into paper values(300001,"论文1",2012012010,"",1567343905303,"SCI",006,"",0);
-insert into paper values(300002,"论文2",2012012011,"",1567343905303,"EI(JA)",007,"",0);
-insert into paper values(300003,"论文3",2012012010,"",1567343905303,"EI(CA)",008,"",0);
-insert into paper values(300004,"论文4",2012012013,"",1567343905303,"核心",009,"",0);
-insert into paper values(300005,"论文5",2012012016,"",1567343905303,"计算机教育",010,"",0);
-insert into paper values(300006,"论文6",2012012011,"",1567343905303,"SCI",006,"",0);
-insert into paper values(300007,"论文7",2012012011,"",1567343905303,"一般",011,"",0);
-insert into paper values(300008,"论文8",2012012010,"",1567343905303,"SCI",006,"",0);
-insert into paper values(300009,"论文9",2012012012,"",1567343905303,"SCI",006,"",0);
-insert into paper values(300010,"论文10",2012012013,"",1567343905303,"SCI",006,"",0);
-insert into paper values(300011,"论文11",2012012014,"",1567343905303,"SCI",006,"",0);
+insert into paper values(300001,"论文1",2012012010,"",20190203,"SCI",006,"",0);
+insert into paper values(300002,"论文2",2012012011,"",20180203,"EI(JA)",007,"",0);
+insert into paper values(300003,"论文3",2012012010,"",20170203,"EI(CA)",008,"",0);
+insert into paper values(300004,"论文4",2012012013,"",20170203,"核心",009,"",0);
+insert into paper values(300005,"论文5",2012012016,"",20170203,"计算机教育",010,"",0);
+insert into paper values(300006,"论文6",2012012011,"",20170203,"SCI",006,"",0);
+insert into paper values(300007,"论文7",2012012011,"",20170203,"一般",011,"",0);
+insert into paper values(300008,"论文8",2012012010,"",20170203,"SCI",006,"",0);
+insert into paper values(300009,"论文9",2012012012,"",20170203,"SCI",006,"",0);
+insert into paper values(300010,"论文10",2012012013,"",20170203,"SCI",006,"",0);
+insert into paper values(300011,"论文11",2012012014,"",20170203,"SCI",006,"",0);
