@@ -44,7 +44,7 @@ public class PaperController {
     }
 
     @RequestMapping("/DoPapersUpdate")
-    public String dopapersUpdate(@RequestParam("pppno") Integer pppno,
+    public String dopapersUpdate(@RequestParam("ppno") Integer ppno,
                               @RequestParam("ppname") String ppname,
                               @RequestParam("author") Integer author,
                               @RequestParam("journal") String journal,
@@ -53,7 +53,7 @@ public class PaperController {
                               @RequestParam("rankno") Integer rankno, HttpServletRequest request) {
 
         Paper paper = new Paper();
-        paper.setPpno(pppno);
+        paper.setPpno(ppno);
         paper.setPpname(ppname);
         paper.setAuthor(author);
         paper.setJournal(journal);
@@ -66,18 +66,18 @@ public class PaperController {
 
     @RequestMapping("/UpdatePaper")
     public String updatePaper(Map<String, Object> paramMap, HttpServletRequest httpServletRequest) {
-        String pppno = httpServletRequest.getParameter("pppno");
-        int pppno_int = Integer.parseInt(pppno);
-        Paper paper = paperService.getPaperByPpno(pppno_int);
+        String ppno = httpServletRequest.getParameter("ppno");
+        int ppno_int = Integer.parseInt(ppno);
+        Paper paper = paperService.getPaperByPpno(ppno_int);
         paramMap.put("updatePaper", paper);
         return "papers_alter";
     }
 
     @RequestMapping("/DeletePaper")
     public String DeletePaper(HttpServletRequest httpServletRequest) {
-        String pppno = httpServletRequest.getParameter("pppno");
-        int pppno_int = Integer.parseInt(pppno);
-        paperService.delPaperByPpno(pppno_int);
+        String ppno = httpServletRequest.getParameter("ppno");
+        int ppno_int = Integer.parseInt(ppno);
+        paperService.delPaperByPpno(ppno_int);
         return "paper_info";
     }
 
